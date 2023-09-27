@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "1dd53a2a-740b-4ff8-85f3-ff9f029b9194",
+		"name": "Account_Status_V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23980253"
+	},
+	"item": [
+		{
+			"name": "Account Status V2 - Successful Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Account Status V2 - Successful\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.description).to.eql(\"success\");",
+							"});",
+							"",
+							"pm.test(\"Account Status V2 - Data Returned\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data).to.not.empty",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "250",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{inquiryUrl}}/AccountInquiry/accountStatusV2TestOnly?accountNumber=2336120039",
+					"host": [
+						"{{inquiryUrl}}"
+					],
+					"path": [
+						"AccountInquiry",
+						"accountStatusV2TestOnly"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "2336120039"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "B2B Account Summaries",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-correlation-id",
+								"value": "",
+								"description": "Correlation Id",
+								"type": "text"
+							},
+							{
+								"key": "client_id",
+								"value": "250",
+								"description": "Client Identifier (Required)",
+								"type": "text"
+							},
+							{
+								"key": "x-token",
+								"value": "",
+								"description": "Required",
+								"type": "text"
+							},
+							{
+								"key": "UTCTimestamp",
+								"value": "",
+								"description": "Required",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://accountinquiry.fcmb-azr-msase.p.azurewebsites.net/api/AccountInquiry/getB2BAccountSummary?accountNo=1289907027",
+							"protocol": "https",
+							"host": [
+								"accountinquiry",
+								"fcmb-azr-msase",
+								"p",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"AccountInquiry",
+								"getB2BAccountSummary"
+							],
+							"query": [
+								{
+									"key": "accountNo",
+									"value": "1289907027"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Request-Context",
+							"value": "appId=cid-v1:c9e74486-d856-4bc9-80f9-729840f6d8dd"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Mar 2023 09:09:00 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"accountName\": \"OMOSUYI SUNDAY SAMUEL\",\n        \"accountNumber\": \"1289907027\",\n        \"accountStatus\": null,\n        \"drawingPower\": \"0\",\n        \"customerId\": \"1289907\",\n        \"currency\": \"NGN\",\n        \"freezeReason\": null,\n        \"availableBalance\": 1865972.44,\n        \"ledgerBalance\": 2841447.71,\n        \"totalDebit\": 102080233.54,\n        \"totalCredit\": 104921681.25,\n        \"lienAmount\": 975475.27,\n        \"openingDate\": \"07/03/2013 00:00:00\",\n        \"schemeCode\": \"OD210\"\n    },\n    \"code\": \"00\",\n    \"description\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Account Status V2 - Null Account Number Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Account Status V2 - Null Account Number\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.description).to.eql(\"Fcmb Invalid Nuban Account\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "250",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{inquiryUrl}}/AccountInquiry/loanBalance?accountNumber=",
+					"host": [
+						"{{inquiryUrl}}"
+					],
+					"path": [
+						"AccountInquiry",
+						"loanBalance"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "B2B Account Summaries",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-correlation-id",
+								"value": "",
+								"description": "Correlation Id",
+								"type": "text"
+							},
+							{
+								"key": "client_id",
+								"value": "250",
+								"description": "Client Identifier (Required)",
+								"type": "text"
+							},
+							{
+								"key": "x-token",
+								"value": "",
+								"description": "Required",
+								"type": "text"
+							},
+							{
+								"key": "UTCTimestamp",
+								"value": "",
+								"description": "Required",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://accountinquiry.fcmb-azr-msase.p.azurewebsites.net/api/AccountInquiry/getB2BAccountSummary?accountNo=1289907027",
+							"protocol": "https",
+							"host": [
+								"accountinquiry",
+								"fcmb-azr-msase",
+								"p",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"AccountInquiry",
+								"getB2BAccountSummary"
+							],
+							"query": [
+								{
+									"key": "accountNo",
+									"value": "1289907027"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Request-Context",
+							"value": "appId=cid-v1:c9e74486-d856-4bc9-80f9-729840f6d8dd"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Mar 2023 09:09:00 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"accountName\": \"OMOSUYI SUNDAY SAMUEL\",\n        \"accountNumber\": \"1289907027\",\n        \"accountStatus\": null,\n        \"drawingPower\": \"0\",\n        \"customerId\": \"1289907\",\n        \"currency\": \"NGN\",\n        \"freezeReason\": null,\n        \"availableBalance\": 1865972.44,\n        \"ledgerBalance\": 2841447.71,\n        \"totalDebit\": 102080233.54,\n        \"totalCredit\": 104921681.25,\n        \"lienAmount\": 975475.27,\n        \"openingDate\": \"07/03/2013 00:00:00\",\n        \"schemeCode\": \"OD210\"\n    },\n    \"code\": \"00\",\n    \"description\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Account Status V2 - Invalid Account Number Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Account Status V2 - Invalid Account Number\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.description).to.eql(\"Fcmb Invalid Nuban Account\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "250",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{inquiryUrl}}/AccountInquiry/loanBalance?accountNumber=Invalid",
+					"host": [
+						"{{inquiryUrl}}"
+					],
+					"path": [
+						"AccountInquiry",
+						"loanBalance"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "Invalid"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "B2B Account Summaries",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-correlation-id",
+								"value": "",
+								"description": "Correlation Id",
+								"type": "text"
+							},
+							{
+								"key": "client_id",
+								"value": "250",
+								"description": "Client Identifier (Required)",
+								"type": "text"
+							},
+							{
+								"key": "x-token",
+								"value": "",
+								"description": "Required",
+								"type": "text"
+							},
+							{
+								"key": "UTCTimestamp",
+								"value": "",
+								"description": "Required",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://accountinquiry.fcmb-azr-msase.p.azurewebsites.net/api/AccountInquiry/getB2BAccountSummary?accountNo=1289907027",
+							"protocol": "https",
+							"host": [
+								"accountinquiry",
+								"fcmb-azr-msase",
+								"p",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"AccountInquiry",
+								"getB2BAccountSummary"
+							],
+							"query": [
+								{
+									"key": "accountNo",
+									"value": "1289907027"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Request-Context",
+							"value": "appId=cid-v1:c9e74486-d856-4bc9-80f9-729840f6d8dd"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Mar 2023 09:09:00 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"accountName\": \"OMOSUYI SUNDAY SAMUEL\",\n        \"accountNumber\": \"1289907027\",\n        \"accountStatus\": null,\n        \"drawingPower\": \"0\",\n        \"customerId\": \"1289907\",\n        \"currency\": \"NGN\",\n        \"freezeReason\": null,\n        \"availableBalance\": 1865972.44,\n        \"ledgerBalance\": 2841447.71,\n        \"totalDebit\": 102080233.54,\n        \"totalCredit\": 104921681.25,\n        \"lienAmount\": 975475.27,\n        \"openingDate\": \"07/03/2013 00:00:00\",\n        \"schemeCode\": \"OD210\"\n    },\n    \"code\": \"00\",\n    \"description\": \"success\"\n}"
+				}
+			]
+		}
+	]
+}

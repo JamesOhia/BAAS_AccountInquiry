@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "a0f646f1-2e73-4d73-b4c2-f33be403a8a2",
+		"name": "Account_Status",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23980253"
+	},
+	"item": [
+		{
+			"name": "Account Status - Success Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Account Status - Success\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.description).to.eql(\"success\");",
+							"});",
+							"",
+							"pm.test(\"Name Enquiry - Data Returned\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data).to.not.empty",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "250",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{inquiryUrl}}/AccountInquiry/accountStatusV1?accountNumber=8660224016",
+					"host": [
+						"{{inquiryUrl}}"
+					],
+					"path": [
+						"AccountInquiry",
+						"accountStatusV1"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "8660224016",
+							"description": "Required"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account Status - Null Account Number Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Account Status - Null Account Number\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0]).to.eql(\"The accountNumber field is required.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "250",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{inquiryUrl}}/AccountInquiry/accountStatusV1?accountNumber=",
+					"host": [
+						"{{inquiryUrl}}"
+					],
+					"path": [
+						"AccountInquiry",
+						"accountStatusV1"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "",
+							"description": "Required"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account Status - Invalid Account Number Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Account Status - Invalid Account Number\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0]).to.eql(\"Fcmb Invalid Nuban Account\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "250",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{inquiryUrl}}/AccountInquiry/accountStatusV1?accountNumber=Invalid",
+					"host": [
+						"{{inquiryUrl}}"
+					],
+					"path": [
+						"AccountInquiry",
+						"accountStatusV1"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "Invalid",
+							"description": "Required"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
